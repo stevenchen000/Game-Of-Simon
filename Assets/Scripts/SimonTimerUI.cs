@@ -1,51 +1,90 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SimonTimerUI : MonoBehaviour
+
+namespace SimonSystem
 {
-    private Slider slider;
-    private CanvasGroup cgroup;
-    private SimonManager simon;
-    private bool enabled = false;
-
-    // Start is called before the first frame update
-    void Start()
+    public class SimonTimerUI : MonoBehaviour
     {
-        cgroup = transform.GetComponent<CanvasGroup>();
-        slider = transform.GetComponentInChildren<Slider>();
-        simon = FindObjectOfType<SimonManager>();
-    }
+        [SerializeField] private Slider slider;
+        [SerializeField] private TMP_Text textbox;
+        private CanvasGroup cgroup;
+        private SimonTimer timer;
+        private bool uiEnabled = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (enabled)
+        private float percentage = 1;
+
+        [SerializeField] private float fadeInTime = 1;
+        [SerializeField] private float fadeOutTime = 1;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            UpdateValue();
+            cgroup = transform.GetComponent<CanvasGroup>();
+            timer = FindObjectOfType<SimonTimer>();
+            cgroup.alpha = 0;
         }
-    }
 
-    private void UpdateValue()
-    {
-        float maxTime = simon.GetMaxWaitTime();
-        float currTime = simon.GetCurrentTime();
+        // Update is called once per frame
+        void Update()
+        {
+            if (uiEnabled)
+            {
+                UpdateSlider();
+                UpdateText();
+            }
+        }
 
-        float percentage = (maxTime - currTime) / maxTime;
-        slider.value = percentage;
-    }
+        private void UpdateSlider()
+        {
+            float maxTime = timer.maxWaitTime;
+            float currTime = timer.timeRemaining;
+
+            float tempPercentage = currTime / maxTime;
+
+            if(percentage > tempPercentage)
+            {
+                percentage = tempPercentage;
+            }
+            else
+            {
+                percentage += Time.deltaTime / maxTime;
+                percentage = Mathf.Min(percentage, tempPercentage);
+            }
+
+            slider.value = percentage;
+        }
+
+        private void UpdateText()
+        {
+            float currTime = timer.timeRemaining;
+
+            textbox.text = $"{currTime.ToString("0.00")}s";
+        }
+
+        private void FadeTimer(float fadeValue, float fadeTime)
+        {
+            var tweener = DOTween.To(() => cgroup.alpha, x => cgroup.alpha = x, fadeValue, fadeTime);
+        }
 
 
-    public void EnableUI()
-    {
-        cgroup.alpha = 1;
-        enabled = true;
-    }
+        public void EnableUI()
+        {
+            uiEnabled = true;
+            percentage = 1;
 
-    public void DisableUI()
-    {
-        cgroup.alpha = 0;
-        enabled = false;
+            FadeTimer(1, fadeInTime);
+        }
+
+        public void DisableUI()
+        {
+            uiEnabled = false;
+
+            FadeTimer(0, fadeOutTime);
+        }
     }
 }

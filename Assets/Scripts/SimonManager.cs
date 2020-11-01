@@ -5,167 +5,134 @@ using UnityEngine;
 
 public enum SimonState
 {
-    PlayingActions,
+    PlayingSequence,
     AwaitingPlayer,
     GameOver
 }
 
-public class SimonManager : MonoBehaviour
+namespace SimonSystem
 {
-    public Character player;
-    public List<SimonAction> actions = new List<SimonAction>();
-
-    private SimonState state = SimonState.PlayingActions;
-
-    private List<SimonAction> allActions = new List<SimonAction>();
-    private int actionIndex = 0;
-
-    [SerializeField]
-    private float timeBetweenActions = 0.3f;
-    [SerializeField]
-    private Timer timer;
-
-    [SerializeField]
-    private float maxWaitTime = 5f;
-
-    [SerializeField]
-    private EventSO onAwaitTurn;
-    [SerializeField]
-    private EventSO onPlayerStart;
-    [SerializeField]
-    private EventSO onGameOver;
-
-    // Start is called before the first frame update
-    void Start()
+    public class SimonManager : MonoBehaviour
     {
-        timer = new Timer();
-        ChangeState(SimonState.PlayingActions);
-    }
+        private Character player;
+        private SimonActionSelector selector;
+        private SimonSequencePlayer sequence;
+        private SimonState state = SimonState.PlayingSequence;
 
-    // Update is called once per frame
-    void Update()
-    {
-        timer.Tick();
-        RunState();
-    }
+        private int actionIndex = 0;
 
-    //Important Public Functions
+        [SerializeField] private EventSO onPlayerTurnStart;
+        [SerializeField] private EventSO onPlayerTurnEnd;
+        [SerializeField] private EventSO onCorrectAction;
+        [SerializeField] private EventSO onWrongAction;
 
-    public void SelectAction(SimonAction action)
-    {
-        if (state == SimonState.AwaitingPlayer)
+
+
+        // Start is called before the first frame update
+        void Start()
         {
-            bool correct = CompareAction(action);
+            player = FindObjectOfType<Character>();
+            selector = FindObjectOfType<SimonActionSelector>();
+            sequence = FindObjectOfType<SimonSequencePlayer>();
+            ChangeState(SimonState.PlayingSequence);
+        }
 
-            if (correct)
+        // Update is called once per frame
+        void Update()
+        {
+            //RunState();
+        }
+
+        //Important Public Functions
+
+        public void SelectAction(SimonAction action)
+        {
+            if (state == SimonState.AwaitingPlayer)
             {
-                action.RunAction(player);
-                actionIndex++;
-                if(actionIndex < allActions.Count)
+                bool correct = CompareAction(action);
+
+                if (correct)
                 {
-                    timer = new Timer();
+                    action.RunAction(player);
+                    actionIndex++;
+                    onCorrectAction?.CallEvent();
+
+                    if (actionIndex == selector.GetNumberOfActions())
+                    {
+                        ChangeState(SimonState.PlayingSequence);
+                    }
                 }
                 else
                 {
-                    ChangeState(SimonState.PlayingActions);
+                    onWrongAction?.CallEvent();
                 }
             }
-            else
+        }
+
+
+        public void WaitForPlayer()
+        {
+            ChangeState(SimonState.AwaitingPlayer);
+        }
+
+
+
+
+
+
+        //State Functions
+
+
+        private void RunState()
+        {
+            switch (state)
             {
-                ChangeState(SimonState.GameOver);
+                case SimonState.PlayingSequence:
+                    
+                    break;
+                case SimonState.AwaitingPlayer:
+                    
+                    break;
+                case SimonState.GameOver:
+                    break;
             }
         }
-    }
 
 
 
-
-
-
-
-
-    //State Functions
-
-
-    private void RunState()
-    {
-        switch (state)
+        private void ChangeState(SimonState newState)
         {
-            case SimonState.PlayingActions:
-                PlayActions();
-                break;
-            case SimonState.AwaitingPlayer:
-                if (timer.AtTime(maxWaitTime)) ChangeState(SimonState.GameOver);
-                break;
-            case SimonState.GameOver:
-                break;
-        }
-    }
+            if (state == SimonState.AwaitingPlayer) onPlayerTurnEnd?.CallEvent();
 
-    private void PlayActions()
-    {
-        if (timer.AtTime(timeBetweenActions))
-        {
-            if (actionIndex < allActions.Count)
+            switch (newState)
             {
-                allActions[actionIndex].RunAction(player);
-                actionIndex++;
-            }
-            else
-            {
-                ChangeState(SimonState.AwaitingPlayer);
-            }
+                case SimonState.PlayingSequence:
+                    selector.AddAction();
+                    sequence.Play();
+                    break;
+                case SimonState.AwaitingPlayer:
+                    actionIndex = 0;
+                    onPlayerTurnStart?.CallEvent();
+                    break;
+                case SimonState.GameOver:
 
-            timer = new Timer();
+                    break;
+            }
+            state = newState;
         }
-    }
 
 
-    private void ChangeState(SimonState newState)
-    {
-        switch (newState)
+
+
+
+        //Helper Functions
+
+        private bool CompareAction(SimonAction action)
         {
-            case SimonState.PlayingActions:
-                allActions.Add(GetRandomAction());
-                actionIndex = 0;
-                onAwaitTurn?.CallEvent();
-                break;
-            case SimonState.AwaitingPlayer:
-                actionIndex = 0;
-                onPlayerStart?.CallEvent();
-                break;
-            case SimonState.GameOver:
-                onGameOver?.CallEvent();
-                break;
+            return selector.GetActionAtIndex(actionIndex) == action;
         }
-        state = newState;
-        timer = new Timer();
+
+
+
     }
-
-
-
-
-
-    //Helper Functions
-
-    private SimonAction GetRandomAction()
-    {
-        int rand = Random.Range(0, actions.Count);
-        return actions[rand];
-    }
-
-    private bool CompareAction(SimonAction action)
-    {
-        return allActions[actionIndex] == action;
-    }
-
-
-
-
-    ///Getters and Setters
-
-    public SimonAction GetAction(int index) { return actions[index]; }
-
-    public float GetMaxWaitTime() { return maxWaitTime; }
-    public float GetCurrentTime() { return timer.GetCurrentTime(); }
 }

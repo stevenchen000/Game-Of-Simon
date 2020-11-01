@@ -5,28 +5,26 @@ using System.Collections;
 [CreateAssetMenu(menuName = "Simon Action")]
 public class SimonAction : ScriptableObject
 {
-    [SerializeField]
-    private string animationName;
+    [SerializeField] private string animationName;
 
     [Space(20)]
-    [SerializeField]
-    private Sprite animationSprite;
+    [SerializeField] private Sprite actionSprite;
 
     [Space(20)]
-    [SerializeField]
-    private bool overridePosition = false;
-    [SerializeField]
-    private Vector3 animationPosition;
+    [SerializeField] private bool overridePosition = false;
+    [SerializeField] private Vector3 animationPosition;
 
-    public void RunAction(Character character)
+    [Space(20)]
+    [SerializeField] private AudioClip clip;
+
+    public void RunAction(Character character, bool playSound = true)
     {
         character.PlayAnimation(animationName);
 
-        if (overridePosition)
-        {
-            character.SetPosition(animationPosition);
-        }
+        if (playSound) character.PlayClip(clip);
+        if (overridePosition) character.SetPosition(animationPosition);
     }
 
-    public Sprite GetSprite() { return animationSprite; }
+
+    public Sprite GetSprite() { return actionSprite; }
 }
