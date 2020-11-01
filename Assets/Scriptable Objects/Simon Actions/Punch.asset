@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc1bdbafcde37f4f86c949ad7ff69b4, type: 3}
+  m_Name: Punch
+  m_EditorClassIdentifier: 
+  animationName: Punch
+  actionSprite: {fileID: 21300000, guid: 4eb9694f5a04c0e45a8992067cd810fb, type: 3}
+  overridePosition: 0
+  animationPosition: {x: 0, y: 0, z: 0}
+  clip: {fileID: 8300000, guid: b2c85594e657f244085cd66d0f782b00, type: 3}
