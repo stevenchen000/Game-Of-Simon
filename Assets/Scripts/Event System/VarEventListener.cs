@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace SOEventSystem
 {
+    [Serializable]
     public class VarEventObject<T>
     {
         public VarEventSO<T> eventSO;

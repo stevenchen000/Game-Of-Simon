@@ -7,6 +7,7 @@ namespace SOEventSystem
 {
     public class VarEventSO<T> : ScriptableObject
     {
+        [TextArea()]
         public string description;
         public delegate void VarEvent(T var);
         private event VarEvent _event;
