@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1407220144, guid: abf3c058d94959640bec02372a894b38, type: 3}
+  m_Name: SaveManager
+  m_EditorClassIdentifier: 
+  fileCache:
+    stamp: by 5f9f50ef5849010008dcb24e at Sunday, November 1, 2020 4:49:33 PM
+    appId: 5f9f57837fa3e10008b3115e
+    appName: Game Of Simon
+    versionId: 
+    versionStatus: 0
+    versionSeq: 0
+    sdkRev: 2000
+    scenesList:
+    - sceneName: SampleScene
+      id: 5f9f57a0040ca1000884299e
+      currentScenePath: Assets/Scenes/SampleScene.unity
+      pathsHistory:
+      - Assets/Scenes/SampleScene.unity
+      placementsList:
+      - isSavedPlacement: 0
+        invalidReason: new
+        modelKey: 5ee7e9e47cea8d42a8b60ac6
+        idInFile: 1640022451
+        placementType: 1
+        placementId: 5f9f57a373238e0008122062
+        placementName: Y2NAlorcu6kbE9qOqGl6
+        placementDisplayName: Video_4x3
+        sceneId: 5f9f57a0040ca1000884299e
+        textureResolution: {x: 640, y: 480}
+  projectScanCache:
+    stamp: by 5f9f50ef5849010008dcb24e at Sunday, November 1, 2020 4:49:33 PM
+    appId: 5f9f57837fa3e10008b3115e
+    appName: Game Of Simon
+    versionId: 
+    versionStatus: 0
+    versionSeq: 0
+    sdkRev: 2000
+    scenesList:
+    - sceneName: SampleScene
+      id: 5f9f57a0040ca1000884299e
+      currentScenePath: Assets/Scenes/SampleScene.unity
+      pathsHistory: []
+      placementsList:
+      - isSavedPlacement: 0
+        invalidReason: new
+        modelKey: 5ee7e9e47cea8d42a8b60ac6
+        idInFile: 1640022451
+        placementType: 1
+        placementId: 5f9f57a373238e0008122062
+        placementName: Y2NAlorcu6kbE9qOqGl6
+        placementDisplayName: Video_4x3
+        sceneId: 5f9f57a0040ca1000884299e
+        textureResolution: {x: 640, y: 480}
+  remoteCache:
+    stamp: 
+    appId: 5f9f57837fa3e10008b3115e
+    appName: Game Of Simon
+    versionId: 5f9f57837fa3e10008b3115f
+    versionStatus: 0
+    versionSeq: 0
+    sdkRev: 
+    scenesList: []
+  remotePostSaveCache:
+    stamp: 
+    appId: 5f9f57837fa3e10008b3115e
+    appName: Game Of Simon
+    versionId: 5f9f57837fa3e10008b3115f
+    versionStatus: 0
+    versionSeq: 0
+    sdkRev: 
+    scenesList:
+    - sceneName: SampleScene
+      id: 5f9f57a0040ca1000884299e
+      currentScenePath: 
+      pathsHistory: []
+      placementsList:
+      - isSavedPlacement: 0
+        invalidReason: 
+        modelKey: 5ee7e9e47cea8d42a8b60ac6
+        idInFile: 0
+        placementType: 1
+        placementId: 5f9f57a373238e0008122062
+        placementName: Y2NAlorcu6kbE9qOqGl6
+        placementDisplayName: Video_4x3
+        sceneId: 5f9f57a0040ca1000884299e
+        textureResolution: {x: 0, y: 0}
+  placementsToHide: []
