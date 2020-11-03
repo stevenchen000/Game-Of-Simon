@@ -32,6 +32,7 @@ namespace SimonSystem
 
 		[Space(20)]
 		[SerializeField] private EventSO onSequenceFinish;
+		[SerializeField] private VarEventSO<SimonAction> onActionRun;
 		void Start()
 		{
 			selector = FindObjectOfType<SimonActionSelector>();
@@ -57,6 +58,7 @@ namespace SimonSystem
 
 				SimonAction action = actionList[i];
 				action.RunAction(player);
+				onActionRun?.CallEvent(action);
 			}
 
 			yield return new WaitForSeconds(endDelayTime);

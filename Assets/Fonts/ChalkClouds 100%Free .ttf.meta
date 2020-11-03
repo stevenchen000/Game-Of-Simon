@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 7fd3b0d0bfd28084d8523fc5d8ea10b4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Chalk Clouds
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a7e76e70de2bcc6429dd51d58ba146ab, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

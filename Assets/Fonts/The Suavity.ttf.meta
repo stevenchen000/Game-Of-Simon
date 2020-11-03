@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a50de0ab1cc553a4eb6d6308c03c1da4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - The Suavity
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 24e58a90a17c5f84785d04d3bbd11bd8, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

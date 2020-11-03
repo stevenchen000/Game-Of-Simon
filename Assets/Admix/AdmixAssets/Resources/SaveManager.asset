@@ -13,39 +13,186 @@ MonoBehaviour:
   m_Name: SaveManager
   m_EditorClassIdentifier: 
   fileCache:
-    stamp: 
-    appId: 
-    appName: 
-    versionId: 
+    stamp: by 5f9f50ef5849010008dcb24e at Monday, November 2, 2020 1:39:47 AM
+    appId: 5f9f57837fa3e10008b3115e
+    appName: Game Of Simon
+    versionId: 5f9f57837fa3e10008b3115f
     versionStatus: 0
     versionSeq: 0
-    sdkRev: 
-    scenesList: []
+    sdkRev: 2000
+    scenesList:
+    - sceneName: SampleScene
+      id: 5f9f57a0040ca1000884299e
+      currentScenePath: Assets/Scenes/SampleScene.unity
+      pathsHistory:
+      - Assets/Scenes/SampleScene.unity
+      placementsList:
+      - isSavedPlacement: 1
+        invalidReason: 
+        modelKey: 5ee7e9e47cea8d42a8b60ac6
+        idInFile: 1927624471
+        placementType: 1
+        placementId: 5f9fc69467b2290008ebaeae
+        placementName: AgMTGbXa2gRyCtCB0lsa
+        placementDisplayName: Video_4x3
+        sceneId: 5f9f57a0040ca1000884299e
+        textureResolution: {x: 640, y: 480}
+    - sceneName: Living Room
+      id: 5f9fce611e176e00084ad13c
+      currentScenePath: Assets/Scenes/Living Room.unity
+      pathsHistory:
+      - Assets/Scenes/Living Room.unity
+      placementsList:
+      - isSavedPlacement: 1
+        invalidReason: 
+        modelKey: 5ee7e9e47cea8d42a8b60ac6
+        idInFile: 2052083291
+        placementType: 1
+        placementId: 5f9fcf0c78197d00088409cf
+        placementName: jGDlpivrsNIy1TOL3p5X
+        placementDisplayName: Video_4x3
+        sceneId: 5f9fce611e176e00084ad13c
+        textureResolution: {x: 640, y: 480}
   projectScanCache:
     stamp: 
-    appId: 
-    appName: 
+    appId: 5f9f57837fa3e10008b3115e
+    appName: Game Of Simon
     versionId: 
     versionStatus: 0
     versionSeq: 0
-    sdkRev: 
-    scenesList: []
+    sdkRev: 2000
+    scenesList:
+    - sceneName: Living Room
+      id: 5f9fce611e176e00084ad13c
+      currentScenePath: Assets/Scenes/Living Room.unity
+      pathsHistory: []
+      placementsList:
+      - isSavedPlacement: 1
+        invalidReason: 
+        modelKey: 5ee7e9e47cea8d42a8b60ac6
+        idInFile: 2052083291
+        placementType: 1
+        placementId: 5f9fcf0c78197d00088409cf
+        placementName: jGDlpivrsNIy1TOL3p5X
+        placementDisplayName: Video_4x3
+        sceneId: 5f9fce611e176e00084ad13c
+        textureResolution: {x: 640, y: 480}
   remoteCache:
     stamp: 
-    appId: 
-    appName: 
-    versionId: 
+    appId: 5f9f57837fa3e10008b3115e
+    appName: Game Of Simon
+    versionId: 5f9f57837fa3e10008b3115f
     versionStatus: 0
     versionSeq: 0
     sdkRev: 
-    scenesList: []
+    scenesList:
+    - sceneName: SampleScene
+      id: 5f9f57a0040ca1000884299e
+      currentScenePath: 
+      pathsHistory: []
+      placementsList:
+      - isSavedPlacement: 0
+        invalidReason: 
+        modelKey: 5ee7e9e47cea8d42a8b60ac6
+        idInFile: 0
+        placementType: 1
+        placementId: 5f9fc69467b2290008ebaeae
+        placementName: AgMTGbXa2gRyCtCB0lsa
+        placementDisplayName: Video_4x3
+        sceneId: 5f9f57a0040ca1000884299e
+        textureResolution: {x: 0, y: 0}
+    - sceneName: Living Room
+      id: 5f9fce611e176e00084ad13c
+      currentScenePath: 
+      pathsHistory: []
+      placementsList:
+      - isSavedPlacement: 0
+        invalidReason: 
+        modelKey: 5ee7e9e47cea8d42a8b60ac6
+        idInFile: 0
+        placementType: 1
+        placementId: 5f9fcf0c78197d00088409cf
+        placementName: jGDlpivrsNIy1TOL3p5X
+        placementDisplayName: Video_4x3
+        sceneId: 5f9fce611e176e00084ad13c
+        textureResolution: {x: 0, y: 0}
+      - isSavedPlacement: 0
+        invalidReason: 
+        modelKey: 5ee7e9fb7cea8d42a8b60ac7
+        idInFile: 0
+        placementType: 1
+        placementId: 5f9fd3e26b68940008e3243e
+        placementName: GgvqJfDQc5aiG4SM1Rxo
+        placementDisplayName: Video_16x9
+        sceneId: 5f9fce611e176e00084ad13c
+        textureResolution: {x: 0, y: 0}
+      - isSavedPlacement: 0
+        invalidReason: 
+        modelKey: 5ee7e8d47cea8d42a8b60ac0
+        idInFile: 0
+        placementType: 0
+        placementId: 5f9fd3e26b68940008e3243f
+        placementName: 3XHQXeORbYXMGn5LJMYA
+        placementDisplayName: Banner_6x5
+        sceneId: 5f9fce611e176e00084ad13c
+        textureResolution: {x: 0, y: 0}
+      - isSavedPlacement: 0
+        invalidReason: 
+        modelKey: 5ee7e90e7cea8d42a8b60ac1
+        idInFile: 0
+        placementType: 0
+        placementId: 5f9fd3e26b68940008e32440
+        placementName: Smb3Jkwo3v1uZbz936no
+        placementDisplayName: Banner_32x5
+        sceneId: 5f9fce611e176e00084ad13c
+        textureResolution: {x: 0, y: 0}
+      - isSavedPlacement: 0
+        invalidReason: 
+        modelKey: 5ee7e9437cea8d42a8b60ac2
+        idInFile: 0
+        placementType: 0
+        placementId: 5f9fd3e26b68940008e32441
+        placementName: e4msXjHq2oNZZvL9L1OA
+        placementDisplayName: Banner_364x45
+        sceneId: 5f9fce611e176e00084ad13c
+        textureResolution: {x: 0, y: 0}
   remotePostSaveCache:
     stamp: 
-    appId: 
-    appName: 
-    versionId: 
+    appId: 5f9f57837fa3e10008b3115e
+    appName: Game Of Simon
+    versionId: 5f9f57837fa3e10008b3115f
     versionStatus: 0
     versionSeq: 0
     sdkRev: 
-    scenesList: []
+    scenesList:
+    - sceneName: SampleScene
+      id: 5f9f57a0040ca1000884299e
+      currentScenePath: 
+      pathsHistory: []
+      placementsList:
+      - isSavedPlacement: 0
+        invalidReason: 
+        modelKey: 5ee7e9e47cea8d42a8b60ac6
+        idInFile: 0
+        placementType: 1
+        placementId: 5f9fc69467b2290008ebaeae
+        placementName: AgMTGbXa2gRyCtCB0lsa
+        placementDisplayName: Video_4x3
+        sceneId: 5f9f57a0040ca1000884299e
+        textureResolution: {x: 0, y: 0}
+    - sceneName: Living Room
+      id: 5f9fce611e176e00084ad13c
+      currentScenePath: 
+      pathsHistory: []
+      placementsList:
+      - isSavedPlacement: 0
+        invalidReason: 
+        modelKey: 5ee7e9e47cea8d42a8b60ac6
+        idInFile: 0
+        placementType: 1
+        placementId: 5f9fcf0c78197d00088409cf
+        placementName: jGDlpivrsNIy1TOL3p5X
+        placementDisplayName: Video_4x3
+        sceneId: 5f9fce611e176e00084ad13c
+        textureResolution: {x: 0, y: 0}
   placementsToHide: []

@@ -1,5 +1,5 @@
 {
-    "stamp": "by 5f9f50ef5849010008dcb24e at Sunday, November 1, 2020 4:49:41 PM",
+    "stamp": "by 5f9f50ef5849010008dcb24e at Monday, November 2, 2020 1:41:05 AM",
     "appId": "5f9f57837fa3e10008b3115e",
     "appName": "Game Of Simon",
     "versionId": "5f9f57837fa3e10008b3115f",
@@ -16,15 +16,40 @@
             ],
             "placementsList": [
                 {
-                    "isSavedPlacement": false,
-                    "invalidReason": "new",
+                    "isSavedPlacement": true,
+                    "invalidReason": "",
                     "modelKey": "5ee7e9e47cea8d42a8b60ac6",
-                    "idInFile": 1640022451,
+                    "idInFile": 1927624471,
                     "placementType": 1,
-                    "placementId": "5f9f57a373238e0008122062",
-                    "placementName": "Y2NAlorcu6kbE9qOqGl6",
+                    "placementId": "5f9fc69467b2290008ebaeae",
+                    "placementName": "AgMTGbXa2gRyCtCB0lsa",
                     "placementDisplayName": "Video_4x3",
                     "sceneId": "5f9f57a0040ca1000884299e",
+                    "textureResolution": {
+                        "x": 640.0,
+                        "y": 480.0
+                    }
+                }
+            ]
+        },
+        {
+            "sceneName": "Living Room",
+            "id": "5f9fce611e176e00084ad13c",
+            "currentScenePath": "Assets/Scenes/Living Room.unity",
+            "pathsHistory": [
+                "Assets/Scenes/Living Room.unity"
+            ],
+            "placementsList": [
+                {
+                    "isSavedPlacement": true,
+                    "invalidReason": "",
+                    "modelKey": "5ee7e9e47cea8d42a8b60ac6",
+                    "idInFile": 2052083291,
+                    "placementType": 1,
+                    "placementId": "5f9fcf0c78197d00088409cf",
+                    "placementName": "jGDlpivrsNIy1TOL3p5X",
+                    "placementDisplayName": "Video_4x3",
+                    "sceneId": "5f9fce611e176e00084ad13c",
                     "textureResolution": {
                         "x": 640.0,
                         "y": 480.0

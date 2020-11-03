@@ -15,8 +15,6 @@ namespace SOEventSystem
 
         [Space(20)]
         [SerializeField] private bool showDebugText;
-        private static bool _showDebugText;
-        private bool previousValue;
 
         public void SubscribeToEvent(VoidEvent func)
         {
@@ -30,21 +28,13 @@ namespace SOEventSystem
 
         public void CallEvent()
         {
-            if(_showDebugText) Debug.Log($"Called event {name}");
+            if(showDebugText) Debug.Log($"Called event {name}");
             _event?.Invoke();
         }
 
         public void OnBeforeSerialize()
         {
-            if(showDebugText != previousValue)
-            {
-                previousValue = showDebugText;
-                _showDebugText = showDebugText;
-            }else if(_showDebugText != showDebugText)
-            {
-                showDebugText = _showDebugText;
-                previousValue = showDebugText;
-            }
+            
         }
 
         public void OnAfterDeserialize()
