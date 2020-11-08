@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+[Serializable]
 public class Timer
 {
-    private float previousFrame;
-    private float currentFrame;
+    [SerializeField] private float previousFrame;
+    [SerializeField] private float currentFrame;
 
     public void Tick()
     {
