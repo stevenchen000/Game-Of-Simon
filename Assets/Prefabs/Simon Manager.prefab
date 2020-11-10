@@ -1,0 +1,364 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &229555548584639602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229555548584639603}
+  - component: {fileID: 229555548584639600}
+  - component: {fileID: 229555548584639601}
+  m_Layer: 0
+  m_Name: Simon Score Tracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229555548584639603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548584639602}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 229555548587665161}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229555548584639600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548584639602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940eaa9e3bb4fb24e8501e60c516a726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scorePerAction: 100
+  comboMultiplier: 0.2
+  onScoreChanged: {fileID: 11400000, guid: 1e9377274ed06ed4791e2920d89e1f6c, type: 2}
+--- !u!114 &229555548584639601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548584639602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27bcdc9d9cf77a47b05972e234a5384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 'OnCorrectAction - 1 action(s)
+
+    1) AddToScore (Simon Score Tracker)
+
+
+    OnWrongAction
+    - 1 action(s)
+
+    1) ResetCombo (Simon Score Tracker)'
+  eventObjects:
+  - description: 'OnCorrectAction - 1 action(s)
+
+      1) AddToScore (Simon Score
+      Tracker)'
+    eventSO: {fileID: 11400000, guid: e7146a3db12b1ad4aac435f00026e66f, type: 2}
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 229555548584639600}
+          m_TargetAssemblyTypeName: SimonSystem.SimonScoreTracker, Assembly-CSharp
+          m_MethodName: AddToScore
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - description: 'OnWrongAction - 1 action(s)
+
+      1) ResetCombo (Simon Score Tracker)'
+    eventSO: {fileID: 11400000, guid: 7f2a3ea35e22c0542a55f41de0111703, type: 2}
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 229555548584639600}
+          m_TargetAssemblyTypeName: SimonSystem.SimonScoreTracker, Assembly-CSharp
+          m_MethodName: ResetCombo
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1 &229555548587665163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229555548587665161}
+  - component: {fileID: 229555548587665160}
+  - component: {fileID: 229555548587665166}
+  - component: {fileID: 229555548587665167}
+  m_Layer: 0
+  m_Name: Simon Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229555548587665161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548587665163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -228.5873, y: 587.01575, z: -106.12038}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 229555548838631000}
+  - {fileID: 229555548634949583}
+  - {fileID: 229555548584639603}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229555548587665160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548587665163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cfa2d80777a5dd468453d84ce9de1ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPlayerTurnStart: {fileID: 11400000, guid: 680251d0184cafd43902c9f63f896f27, type: 2}
+  onPlayerTurnEnd: {fileID: 11400000, guid: e447f14d90400e742b10f69d3a856541, type: 2}
+  onCorrectAction: {fileID: 11400000, guid: e7146a3db12b1ad4aac435f00026e66f, type: 2}
+  onWrongAction: {fileID: 11400000, guid: 7f2a3ea35e22c0542a55f41de0111703, type: 2}
+  onSimonAction: {fileID: 11400000, guid: 72dfd1200615d4d4fa23ab3006b0be88, type: 2}
+--- !u!114 &229555548587665166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548587665163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27bcdc9d9cf77a47b05972e234a5384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 'OnSequenceFinish - 1 action(s)
+
+    1) WaitForPlayer (Simon Manager)
+
+
+    OnGameOver
+    - 1 action(s)
+
+    1) GameOver (Simon Manager)'
+  eventObjects:
+  - description: 'OnSequenceFinish - 1 action(s)
+
+      1) WaitForPlayer (Simon Manager)'
+    eventSO: {fileID: 11400000, guid: 4005aaf99aafefb42bcdfd3c0bfd482c, type: 2}
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 229555548587665160}
+          m_TargetAssemblyTypeName: SimonSystem.SimonManager, Assembly-CSharp
+          m_MethodName: WaitForPlayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - description: 'OnGameOver - 1 action(s)
+
+      1) GameOver (Simon Manager)'
+    eventSO: {fileID: 11400000, guid: f6aaacca059646147acdd284cfad2642, type: 2}
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 229555548587665160}
+          m_TargetAssemblyTypeName: SimonSystem.SimonManager, Assembly-CSharp
+          m_MethodName: GameOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &229555548587665167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548587665163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f6aa8c8ed26e84bbab8b6b24ae884e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startOnAwake: 1
+  startTime: 2.5
+  timerEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 229555548587665160}
+        m_TargetAssemblyTypeName: SimonSystem.SimonManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &229555548634949577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229555548634949583}
+  - component: {fileID: 229555548634949582}
+  m_Layer: 0
+  m_Name: Simon Sequence Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229555548634949583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548634949577}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 564.64075, y: 629.36755, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 229555548587665161}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229555548634949582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548634949577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb15d6fe2eb16c048b3feed6ee9f7905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sequence: 0
+  startDelayTime: 1
+  endDelayTime: 1.5
+  timeBetweenActions: 0.6
+  groupSize: 3
+  groupWaitTime: 1
+  onSequenceFinish: {fileID: 11400000, guid: 4005aaf99aafefb42bcdfd3c0bfd482c, type: 2}
+  onActionRun: {fileID: 11400000, guid: 72dfd1200615d4d4fa23ab3006b0be88, type: 2}
+--- !u!1 &229555548838631002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229555548838631000}
+  - component: {fileID: 229555548838631003}
+  - component: {fileID: 229555548838631001}
+  m_Layer: 0
+  m_Name: Simon Action Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229555548838631000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548838631002}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 564.64075, y: 629.36755, z: 92.21157}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 229555548587665161}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229555548838631003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548838631002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781dc16d830f4fa45a3817e7eead2ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: 8901bc4486e89ce44bdc30e71c87a76f, type: 2}
+  - {fileID: 11400000, guid: f01d38fe0ddff1f4e967908f7dd425c4, type: 2}
+  - {fileID: 11400000, guid: 49bf1d983bce8cf4a9fff9dfde84da80, type: 2}
+  - {fileID: 11400000, guid: e695dde2e0ed82241a0eefd33482d576, type: 2}
+--- !u!114 &229555548838631001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229555548838631002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db108ffb0ee334644b8445750e574581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

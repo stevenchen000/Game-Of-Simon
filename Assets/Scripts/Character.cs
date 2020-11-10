@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using SOEventSystem;
 
 public class Character : MonoBehaviour
 {
     private Animator anim;
     private Vector3 defaultPosition;
     private bool isIdle = true;
+    private bool isDead = false;
     private AudioSource audio;
 
     [SerializeField] private float crossfadeTime = 0.1f;
+    [SerializeField] private EventSO onPlayerIdle;
 
     // Use this for initialization
     void Start()
@@ -21,7 +24,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        anim.SetBool("isDead", isDead);
     }
 
 
@@ -51,7 +54,16 @@ public class Character : MonoBehaviour
 
     public void SetIdle()
     {
-        isIdle = true;
-        ResetPosition();
+        if (!isIdle)
+        {
+            isIdle = true;
+            ResetPosition();
+            onPlayerIdle?.CallEvent();
+        }
+    }
+
+    public void SetDead()
+    {
+        isDead = true;
     }
 }

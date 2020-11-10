@@ -75,7 +75,7 @@ public class UIAnimation : ISerializationCallbackReceiver
 
 	public void OnAfterDeserialize()
 	{
-        
+		description = $"t={startTime} - {duration}s\n";
     }
 
     public void OnBeforeSerialize(){}
@@ -129,13 +129,10 @@ public class UIAnimator : MonoBehaviour
 	private void RunAnimations()
     {
 		bool finished = true;
-		Debug.Log("Animation running");
-		Debug.Log(timer.GetCurrentTime());
 		for(int i = 0; i < animations.Count; i++)
         {
             if (TimeForAnimationToStart(animations[i]))
             {
-				Debug.Log("Animation reached");
 				animations[i].StartAnimation();
             }
             else if (AnimationHasStarted(animations[i]))
@@ -151,7 +148,6 @@ public class UIAnimator : MonoBehaviour
 		if (finished)
 		{
 			timer = null;
-			Debug.Log("Animation finished");
 		}
     }
 

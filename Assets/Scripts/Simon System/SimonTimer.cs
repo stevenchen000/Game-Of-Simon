@@ -10,7 +10,7 @@ namespace SimonSystem
 	{
 		public float maxWaitTime { get { return _maxWaitTime; } set { _maxWaitTime = value; } }
 		[SerializeField] private float _maxWaitTime = 5;
-		public float timeRemaining { get { return _timeRemaining; } set { _timeRemaining = value; } }
+		public float timeRemaining { get { return _timeRemaining; } set { _timeRemaining = Mathf.Max(value, 0); } }
 		[SerializeField] private float _timeRemaining;
 
 		

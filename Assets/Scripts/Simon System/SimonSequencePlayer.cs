@@ -16,6 +16,8 @@ namespace SimonSystem
 	{
 		private SimonActionSelector selector;
 		private Character player;
+		private AudioSource audio;
+
 		[SerializeField] private SequenceType sequence;
 
 		[Space(20)]
@@ -23,6 +25,9 @@ namespace SimonSystem
 		[SerializeField] private float endDelayTime = 1f;
 		[Range(0,1)]
 		[SerializeField] private float timeBetweenActions;
+
+		[Space(20)]
+		[SerializeField] private AudioClip clapSound;
 
 		[Space(20)]
 		[Range(1,10)]
@@ -37,10 +42,22 @@ namespace SimonSystem
 		{
 			selector = FindObjectOfType<SimonActionSelector>();
 			player = FindObjectOfType<Character>();
+			audio = transform.GetComponent<AudioSource>();
 		}
 
 		public void Play()
         {
+			StartCoroutine(PlayClaps());
+        }
+
+		private IEnumerator PlayClaps()
+        {
+			for(int i = 0; i < 3; i++)
+            {
+				audio.PlayOneShot(clapSound);
+				yield return new WaitForSeconds(timeBetweenActions);
+            }
+
 			StartCoroutine(PlayAllAnimations());
         }
 
@@ -68,12 +85,13 @@ namespace SimonSystem
 
 		private bool StartOfNewGroup(int numOfActions, int index)
         {
-			bool result = true;
-
+			bool result = index % groupSize == 0;
+			
 			if(index == 0)
             {
 				result = false;
-            }else if(index % groupSize == 0)
+            }
+			/*else if(index % groupSize == 0)
 			{
 				int remainingActions = numOfActions - index;
 
@@ -83,7 +101,7 @@ namespace SimonSystem
             {
 				result = false;
             }
-
+			*/
 			return result;
         }
 

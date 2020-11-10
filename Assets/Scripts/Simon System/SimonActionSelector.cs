@@ -20,6 +20,10 @@ namespace SimonSystem{
 			allActions.Add(action);
 		}
 
+		public void ResetActions()
+        {
+			allActions = new List<SimonAction>();
+        }
 
 		//Getters & Setters
 

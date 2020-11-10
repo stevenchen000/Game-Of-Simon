@@ -5,10 +5,11 @@ using UnityEngine.Events;
 
 public class TimerEvent : MonoBehaviour
 {
+	[SerializeField] private bool startOnAwake;
 	[SerializeField] private float startTime;
 	[SerializeField] private UnityEvent timerEvent;
-	[SerializeField] private bool startOnAwake;
-	[SerializeField] private Timer timer;
+	
+	private Timer timer;
 
 
     void Start()

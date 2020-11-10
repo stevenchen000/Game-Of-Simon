@@ -40,11 +40,17 @@ namespace SOEventSystem
         private string GetAllMethodNames()
         {
             string methods = "";
+
             for(int i = 0; i < unityEvent.GetPersistentEventCount(); i++)
             {
-                string targetName = unityEvent.GetPersistentTarget(i).name;
-                string methodName = unityEvent.GetPersistentMethodName(i);
-                methods += $"{i+1}) {targetName} - {methodName}\n";
+                var target = unityEvent.GetPersistentTarget(i);
+                if (target != null)
+                {
+                    string targetName = target.name;
+                    string methodName = unityEvent.GetPersistentMethodName(i);
+                    
+                    methods += $"{i + 1}) {methodName} ({targetName})\n";
+                }
             }
 
             return methods.Trim();
@@ -55,8 +61,10 @@ namespace SOEventSystem
         #endregion
     }
 
-    public class EventListener : MonoBehaviour
+    public class EventListener : MonoBehaviour, ISerializationCallbackReceiver
     {
+        [TextArea(2,10)]
+        [SerializeField] private string description;
         public List<EventListenObject> eventObjects = new List<EventListenObject>();
 
         // Start is called before the first frame update
@@ -86,5 +94,17 @@ namespace SOEventSystem
                 eventObjects[i].RemoveEvent();
             }
         }
+
+        public void OnBeforeSerialize()
+        {
+            description = "";
+            for(int i = 0; i < eventObjects.Count; i++)
+            {
+                description += $"{eventObjects[i].description}";
+                if (i != eventObjects.Count - 1) description += "\n\n";
+            }
+        }
+
+        public void OnAfterDeserialize() { }
     }
 }

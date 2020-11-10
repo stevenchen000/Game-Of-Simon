@@ -46,12 +46,21 @@ namespace SimonSystem
 
         private void SetupButton(Button button, SimonAction action)
         {
-            Sprite newSprite = action.GetSprite();
             Transform imageTrans = button.transform.GetChild(0);
             Image buttonImage = imageTrans.GetComponent<Image>();
 
-            buttonImage.sprite = newSprite;
-            button.onClick.AddListener(() => simon.SelectAction(action));
+            if (action != null)
+            {
+                Sprite newSprite = action.GetSprite();
+                buttonImage.sprite = newSprite;
+                buttonImage.color = new Color(1, 1, 1, 1);
+                button.onClick.AddListener(() => simon.SelectAction(action));
+            }
+            else
+            {
+                buttonImage.sprite = null;
+                buttonImage.color = new Color(0, 0, 0, 0);
+            }
         }
 
         public void DisableUI()

@@ -28,13 +28,14 @@ namespace SimonSystem
 
         [SerializeField] private VarEventSO<SimonAction> onSimonAction;
 
+        private bool isActive = false;
+
         // Start is called before the first frame update
         void Start()
         {
             player = FindObjectOfType<Character>();
-            selector = FindObjectOfType<SimonActionSelector>();
-            sequence = FindObjectOfType<SimonSequencePlayer>();
-            ChangeState(SimonState.PlayingSequence);
+            selector = GetComponentInChildren<SimonActionSelector>();
+            sequence = GetComponentInChildren<SimonSequencePlayer>();
         }
 
         // Update is called once per frame
@@ -45,9 +46,19 @@ namespace SimonSystem
 
         //Important Public Functions
 
+        public void StartGame()
+        {
+            if (!isActive)
+            {
+                isActive = true;
+                selector.ResetActions();
+                ChangeState(SimonState.PlayingSequence);
+            }
+        }
+
         public void SelectAction(SimonAction action)
         {
-            if (state == SimonState.AwaitingPlayer)
+            if (isActive && state == SimonState.AwaitingPlayer)
             {
                 bool correct = CompareAction(action);
 
@@ -73,10 +84,13 @@ namespace SimonSystem
 
         public void WaitForPlayer()
         {
-            ChangeState(SimonState.AwaitingPlayer);
+            if (isActive) ChangeState(SimonState.AwaitingPlayer);
         }
 
-
+        public void GameOver()
+        {
+            ChangeState(SimonState.GameOver);
+        }
 
 
 
@@ -116,7 +130,7 @@ namespace SimonSystem
                     onPlayerTurnStart?.CallEvent();
                     break;
                 case SimonState.GameOver:
-
+                    isActive = false;
                     break;
             }
             state = newState;
