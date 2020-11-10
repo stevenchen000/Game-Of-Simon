@@ -66,4 +66,6 @@ public class Character : MonoBehaviour
     {
         isDead = true;
     }
+
+    public bool IsIdle() { return isIdle; }
 }

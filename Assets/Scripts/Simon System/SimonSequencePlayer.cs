@@ -52,6 +52,7 @@ namespace SimonSystem
 
 		private IEnumerator PlayClaps()
         {
+			yield return new WaitForSeconds(startDelayTime);
 			for(int i = 0; i < 3; i++)
             {
 				audio.PlayOneShot(clapSound);

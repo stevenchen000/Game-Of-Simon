@@ -7,6 +7,7 @@ public enum SimonState
 {
     PlayingSequence,
     AwaitingPlayer,
+    AwaitingFinalAnimation,
     GameOver
 }
 
@@ -41,7 +42,10 @@ namespace SimonSystem
         // Update is called once per frame
         void Update()
         {
-            //RunState();
+            if(state == SimonState.AwaitingFinalAnimation)
+            {
+                if (player.IsIdle()) ChangeState(SimonState.PlayingSequence);
+            }
         }
 
         //Important Public Functions
@@ -71,7 +75,7 @@ namespace SimonSystem
 
                     if (actionIndex == selector.GetNumberOfActions())
                     {
-                        ChangeState(SimonState.PlayingSequence);
+                        ChangeState(SimonState.AwaitingFinalAnimation);
                     }
                 }
                 else
@@ -98,21 +102,6 @@ namespace SimonSystem
         //State Functions
 
 
-        private void RunState()
-        {
-            switch (state)
-            {
-                case SimonState.PlayingSequence:
-                    
-                    break;
-                case SimonState.AwaitingPlayer:
-                    
-                    break;
-                case SimonState.GameOver:
-                    break;
-            }
-        }
-
 
 
         private void ChangeState(SimonState newState)
@@ -128,6 +117,9 @@ namespace SimonSystem
                 case SimonState.AwaitingPlayer:
                     actionIndex = 0;
                     onPlayerTurnStart?.CallEvent();
+                    break;
+                case SimonState.AwaitingFinalAnimation:
+                    
                     break;
                 case SimonState.GameOver:
                     isActive = false;
