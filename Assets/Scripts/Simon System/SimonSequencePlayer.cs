@@ -28,6 +28,7 @@ namespace SimonSystem
 
 		[Space(20)]
 		[SerializeField] private AudioClip clapSound;
+		[SerializeField] private List<AudioClip> countdownSounds = new List<AudioClip>();
 
 		[Space(20)]
 		[Range(1,10)]
@@ -47,19 +48,18 @@ namespace SimonSystem
 
 		public void Play()
         {
-			StartCoroutine(PlayClaps());
+			StartCoroutine(PlayAllAnimations());
         }
 
-		private IEnumerator PlayClaps()
+		private IEnumerator PlayClaps(bool countDown = false)
         {
 			yield return new WaitForSeconds(startDelayTime);
-			for(int i = 0; i < 3; i++)
+			for(int i = 0; i < countdownSounds.Count; i++)
             {
-				audio.PlayOneShot(clapSound);
+				if(countDown) audio.PlayOneShot(countdownSounds[i]);
+				audio.PlayOneShot(clapSound, 1.2f);
 				yield return new WaitForSeconds(timeBetweenActions);
             }
-
-			StartCoroutine(PlayAllAnimations());
         }
 
 		private IEnumerator PlayAllAnimations()
@@ -67,8 +67,8 @@ namespace SimonSystem
 			var actionList = GetListOfActions();
 			int numOfActions = actionList.Count;
 
-			yield return new WaitForSeconds(startDelayTime);
-
+			yield return PlayClaps(true);
+			//yield return new WaitForSeconds(startDelayTime);
 			for(int i = 0; i < numOfActions; i++)
 			{
 				if (StartOfNewGroup(numOfActions, i)) yield return new WaitForSeconds(groupWaitTime);
@@ -76,10 +76,13 @@ namespace SimonSystem
 
 				SimonAction action = actionList[i];
 				action.RunAction(player);
+				//audio.PlayOneShot(clapSound);
 				onActionRun?.CallEvent(action);
 			}
 
-			yield return new WaitForSeconds(endDelayTime);
+			yield return new WaitForSeconds(timeBetweenActions);
+			//yield return PlayClaps();
+
 
 			onSequenceFinish?.CallEvent();
         }

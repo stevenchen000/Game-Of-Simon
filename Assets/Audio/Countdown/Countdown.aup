@@ -1,52 +1,50 @@
 <?xml version="1.0" standalone="no" ?>
 <!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
-<project xmlns="http://audacity.sourceforge.net/xml/" projname="Countdown_data" version="1.3.0" audacityversion="2.0.5" sel0="0.0000000000" sel1="0.4310204082" vpos="0" h="0.0000000000" zoom="689.0625000000" rate="44100.0">
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="Countdown_data" version="1.3.0" audacityversion="2.3.0" sel0="0.0000000000" sel1="0.5061224490" vpos="0" h="0.0000000000" zoom="689.0625000000" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
 	<tags>
 		<tag name="TITLE" value="Drumsticks Sound Effect"/>
+		<tag name="YEAR" value="20170207"/>
+		<tag name="Software" value="Lavf57.83.100"/>
 		<tag name="major_brand" value="M4A "/>
 		<tag name="minor_version" value="512"/>
-		<tag name="comment" value="All the sfx in this channel are for your free use but if it&apos;s been useful or if you want to request for a specific sound effect you can contribute on Patreon. Go here for more info: https://www.patreon.com/juanp423 Free sound effect of drumstick counts.  Subscribe for more SFX!"/>
-		<tag name="Software" value="Lavf57.83.100"/>
-		<tag name="ARTIST" value="JP SFX"/>
-		<tag name="description" value="All the sfx in this channel are for your free use but if it&apos;s been useful or if you want to request for a specific sound effect you can contribute on Patreon. Go here for more info: https://www.patreon.com/juanp423 Free sound effect of drumstick counts.  Subscribe for more SFX!"/>
 		<tag name="compatible_brands" value="isomiso2"/>
-		<tag name="YEAR" value="20170207"/>
+		<tag name="ARTIST" value="JP SFX"/>
 	</tags>
-	<wavetrack name="Audio Track" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
-		<waveclip offset="0.00000000">
+	<wavetrack name="Audio Track" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="19008">
 				<waveblock start="0">
-					<simpleblockfile filename="e0000cd8.au" len="19008" min="-0.150512" max="0.158944" rms="0.025771"/>
+					<simpleblockfile filename="e00006b3.au" len="19008" min="-0.629319" max="0.664576" rms="0.200082"/>
 				</waveblock>
 			</sequence>
 			<envelope numpoints="0"/>
 		</waveclip>
 	</wavetrack>
-	<wavetrack name="Audio Track" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
-		<waveclip offset="0.00000000">
+	<wavetrack name="Audio Track" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="19632">
 				<waveblock start="0">
-					<simpleblockfile filename="e00002fc.au" len="19632" min="-0.226769" max="0.239157" rms="0.029785"/>
+					<simpleblockfile filename="e0000fee.au" len="19632" min="-0.948163" max="0.999961" rms="0.227533"/>
 				</waveblock>
 			</sequence>
 			<envelope numpoints="0"/>
 		</waveclip>
 	</wavetrack>
-	<wavetrack name="Audio Track" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
-		<waveclip offset="0.00000000">
+	<wavetrack name="Audio Track" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="22320">
 				<waveblock start="0">
-					<simpleblockfile filename="e0000e32.au" len="22320" min="-0.290852" max="0.368292" rms="0.039355"/>
+					<simpleblockfile filename="e000026a.au" len="22320" min="-0.789718" max="0.999983" rms="0.183103"/>
 				</waveblock>
 			</sequence>
 			<envelope numpoints="0"/>
 		</waveclip>
 	</wavetrack>
-	<wavetrack name="Audio Track" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
-		<waveclip offset="0.00000000">
+	<wavetrack name="Audio Track" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="19600">
 				<waveblock start="0">
-					<simpleblockfile filename="e000084b.au" len="19600" min="-0.467082" max="0.495837" rms="0.059329"/>
+					<simpleblockfile filename="e0000b0e.au" len="19600" min="-0.941982" max="0.999975" rms="0.218791"/>
 				</waveblock>
 			</sequence>
 			<envelope numpoints="0"/>
