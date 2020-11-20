@@ -27,14 +27,21 @@ namespace SimonSystem
 		[SerializeField] private float timeBetweenActions;
 
 		[Space(20)]
-		[SerializeField] private AudioClip clapSound;
-		[SerializeField] private List<AudioClip> countdownSounds = new List<AudioClip>();
+		[Range(1, 10)]
+		[SerializeField] private int groupSize = 3;
+		[Range(0, 1)]
+		[SerializeField] private float groupWaitTime = 0.2f;
 
 		[Space(20)]
-		[Range(1,10)]
-		[SerializeField] private int groupSize = 3;
-		[Range(0,1)]
-		[SerializeField] private float groupWaitTime = 0.2f;
+		[Tooltip("After this many actions, time between actions halves")]
+		[SerializeField] private int actionsToSpeedup = 10;
+
+		[Space(20)]
+		[SerializeField] private AudioClip clapSound;
+		[Range(0,3)]
+		[SerializeField] private float clapSoundMultiplier = 1;
+		[SerializeField] private List<AudioClip> countdownSounds = new List<AudioClip>();
+
 
 		[Space(20)]
 		[SerializeField] private EventSO onSequenceFinish;
@@ -57,7 +64,7 @@ namespace SimonSystem
 			for(int i = 0; i < countdownSounds.Count; i++)
             {
 				if(countDown) audio.PlayOneShot(countdownSounds[i]);
-				audio.PlayOneShot(clapSound, 1.2f);
+				audio.PlayOneShot(clapSound, clapSoundMultiplier);
 				yield return new WaitForSeconds(timeBetweenActions);
             }
         }
@@ -66,8 +73,9 @@ namespace SimonSystem
         {
 			var actionList = GetListOfActions();
 			int numOfActions = actionList.Count;
+			float timeBetweenActions = GetTimeBetweenActions(numOfActions);
 
-			yield return PlayClaps(true);
+			yield return PlayClaps(false);
 			//yield return new WaitForSeconds(startDelayTime);
 			for(int i = 0; i < numOfActions; i++)
 			{
@@ -75,13 +83,12 @@ namespace SimonSystem
 				else if(i != 0) yield return new WaitForSeconds(timeBetweenActions);
 
 				SimonAction action = actionList[i];
-				action.RunAction(player);
-				//audio.PlayOneShot(clapSound);
+				//action.RunAction(player);
 				onActionRun?.CallEvent(action);
 			}
 
 			yield return new WaitForSeconds(timeBetweenActions);
-			//yield return PlayClaps();
+			yield return PlayClaps(false);
 
 
 			onSequenceFinish?.CallEvent();
@@ -129,6 +136,14 @@ namespace SimonSystem
             }
 
 			return result;
+        }
+
+
+
+
+		private float GetTimeBetweenActions(int numOfActions)
+        {
+			return numOfActions >= actionsToSpeedup ? timeBetweenActions / 2 : timeBetweenActions;
         }
     }
 }

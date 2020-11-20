@@ -8,6 +8,7 @@ namespace SimonSystem
     public class SimonAction : ScriptableObject
     {
         [SerializeField] private string animationName;
+        [SerializeField] private string expressionName;
 
         [Space(20)]
         [SerializeField] private Sprite actionSprite;
@@ -22,6 +23,7 @@ namespace SimonSystem
         public void RunAction(Character character, bool playSound = true)
         {
             character.PlayAnimation(animationName);
+            character.ChangeExpression(expressionName);
 
             if (playSound) character.PlayClip(clip);
             if (overridePosition) character.SetPosition(animationPosition);

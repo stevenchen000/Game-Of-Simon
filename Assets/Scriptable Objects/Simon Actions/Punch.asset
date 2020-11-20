@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Punch
   m_EditorClassIdentifier: 
   animationName: Punch
+  expressionName: angry
   actionSprite: {fileID: 21300000, guid: 4eb9694f5a04c0e45a8992067cd810fb, type: 3}
   overridePosition: 0
   animationPosition: {x: 0, y: 0, z: 0}

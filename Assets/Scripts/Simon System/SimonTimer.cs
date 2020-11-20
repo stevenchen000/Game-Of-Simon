@@ -53,6 +53,7 @@ namespace SimonSystem
 		public void AddBonusTime()
 		{
 			timeRemaining += bonusTimePerAction;
+			timeRemaining = Mathf.Min(maxWaitTime, timeRemaining);
 		}
 
 		public void CalculateNewMaxTime()
@@ -69,8 +70,8 @@ namespace SimonSystem
 		{
 			onTimerStop?.CallEvent();
 			isRunning = false;
-			CalculateNewMaxTime();
-			ResetRemainingTime();
+			//CalculateNewMaxTime();
+			//ResetRemainingTime();
 		}
 
 		public void StartTimer()

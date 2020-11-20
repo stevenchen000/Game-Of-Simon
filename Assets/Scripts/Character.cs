@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using SOEventSystem;
+using System.Collections.Generic;
 
 public class Character : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Character : MonoBehaviour
     private bool isIdle = true;
     private bool isDead = false;
     private AudioSource audio;
+    private ExpressionManager expressions;
 
     [SerializeField] private float crossfadeTime = 0.1f;
     [SerializeField] private EventSO onPlayerIdle;
@@ -18,6 +20,9 @@ public class Character : MonoBehaviour
     {
         anim = transform.GetComponent<Animator>();
         audio = transform.GetComponent<AudioSource>();
+
+        expressions = transform.GetComponentInChildren<ExpressionManager>();
+        
         defaultPosition = transform.position;
     }
 
@@ -58,6 +63,7 @@ public class Character : MonoBehaviour
         {
             isIdle = true;
             ResetPosition();
+            ChangeExpression("neutral");
             onPlayerIdle?.CallEvent();
         }
     }
@@ -68,4 +74,10 @@ public class Character : MonoBehaviour
     }
 
     public bool IsIdle() { return isIdle; }
+
+    public void ChangeExpression(string expressionName)
+    {
+        expressions.ChangeExpression(expressionName);
+    }
+
 }

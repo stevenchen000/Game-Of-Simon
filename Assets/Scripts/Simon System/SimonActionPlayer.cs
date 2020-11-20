@@ -5,6 +5,7 @@ using UnityEngine;
 namespace SimonSystem{
 	public class SimonActionPlayer : MonoBehaviour
 	{
+		private Character character;
 		private Animator anim;
 		private SimonAction currentAction;
 		private Timer timer;
@@ -14,6 +15,7 @@ namespace SimonSystem{
 
 		void Start()
 		{
+			character = transform.GetComponent<Character>();
 			anim = transform.GetComponentInChildren<Animator>();
 			timer = new Timer();
 		}
@@ -22,6 +24,13 @@ namespace SimonSystem{
 		{
 			
 		}
+
+		public void PlayAction(SimonAction action)
+        {
+			action.RunAction(character);
+        }
+
+
 
 		private void SetupDefaultTransforms()
         {

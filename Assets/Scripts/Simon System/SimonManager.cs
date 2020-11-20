@@ -8,6 +8,7 @@ public enum SimonState
     PlayingSequence,
     AwaitingPlayer,
     AwaitingFinalAnimation,
+    VictoryAnimation,
     GameOver
 }
 
@@ -68,7 +69,7 @@ namespace SimonSystem
 
                 if (correct)
                 {
-                    action.RunAction(player);
+                    //action.RunAction(player);
                     actionIndex++;
                     onCorrectAction?.CallEvent();
                     onSimonAction?.CallEvent(action);
@@ -119,6 +120,9 @@ namespace SimonSystem
                     onPlayerTurnStart?.CallEvent();
                     break;
                 case SimonState.AwaitingFinalAnimation:
+
+                    break;
+                case SimonState.VictoryAnimation:
                     
                     break;
                 case SimonState.GameOver:
