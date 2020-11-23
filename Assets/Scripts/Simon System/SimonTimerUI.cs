@@ -26,7 +26,7 @@ namespace SimonSystem
         {
             cgroup = transform.GetComponent<CanvasGroup>();
             timer = FindObjectOfType<SimonTimer>();
-            cgroup.alpha = 0;
+            //cgroup.alpha = 0;
         }
 
         // Update is called once per frame
@@ -77,14 +77,14 @@ namespace SimonSystem
             uiEnabled = true;
             percentage = 1;
 
-            FadeTimer(1, fadeInTime);
+            //FadeTimer(1, fadeInTime);
         }
 
         public void DisableUI()
         {
             uiEnabled = false;
 
-            FadeTimer(0, fadeOutTime);
+            //FadeTimer(0, fadeOutTime);
         }
     }
 }

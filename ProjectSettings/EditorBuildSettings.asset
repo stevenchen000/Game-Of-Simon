@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Title Screen.unity
+    path: Assets/Scenes/1 - Title Screen/Title Screen.unity
     guid: 22059ab8e4bd9544aab3d5a7f9f575b7
   - enabled: 1
-    path: Assets/Scenes/Living Room.unity
+    path: Assets/Scenes/3 - Levels/Living Room.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/3 - Levels/Bathroom.unity
+    guid: 07a208a5078f91e43ad73a40848f75b1
+  - enabled: 1
+    path: Assets/Scenes/2 - Menu/Menu.unity
+    guid: af2fb0648f251894891e98702ca97b91
   m_configObjects: {}
