@@ -1,9 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 using UnityEngine;
 
+
+public class GameData
+{
+	public string playerName;
+	public int coins;
+
+}
 
 public class GameStateManager : MonoBehaviour
 {
@@ -13,6 +22,7 @@ public class GameStateManager : MonoBehaviour
 	[SerializeField] private List<string> previousNames = new List<string>();
 	[SerializeField] private int coins;
 
+	private const string filename = "player.sim";
 
 
 	void Start()
@@ -64,4 +74,35 @@ public class GameStateManager : MonoBehaviour
 
 		return coinsSpent;
 	}
+
+
+
+
+	//Save and Load
+
+
+	public void LoadData()
+    {
+		GameData data = UnityUtilities.GetDeserializedObject<GameData>(filename);
+		UnloadGameData(data);
+    }
+
+	public void SaveData()
+    {
+		GameData data = SaveToGameData();
+		UnityUtilities.SerializeObject(filename, data);
+    }
+
+
+	private void UnloadGameData(GameData data)
+    {
+
+    }
+
+	private GameData SaveToGameData()
+    {
+		GameData data = new GameData();
+
+		return data;
+    }
 }

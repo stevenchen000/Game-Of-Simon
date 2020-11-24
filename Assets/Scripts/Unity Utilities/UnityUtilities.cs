@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -79,17 +80,145 @@ public class UnityUtilities
 
     public static string ReadFile(string filename)
     {
-        FileStream file = File.OpenRead(filename);
-        StreamReader reader = new StreamReader(file);
         string result = "";
 
-        string line;
-        while((line = reader.ReadLine()) != null){
-            result += $"{line}\n";
+        if (File.Exists(filename))
+        {
+            FileStream file = File.OpenRead(filename);
+            StreamReader reader = new StreamReader(file);
+
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                result += $"{line}\n";
+            }
+
+            reader.Close();
+            file.Close();
         }
 
         return result.Trim();
     }
+
+    public static FileStream GetFileStream(string filename)
+    {
+        FileStream file = null;
+
+        if (File.Exists(filename))
+        {
+            file = File.OpenWrite(filename);
+        }
+
+        return file;
+    }
+
+    public static T GetDeserializedObject<T>(string filename)
+    {
+        T result = default(T);
+
+        BinaryFormatter bf = new BinaryFormatter();
+        string saveLocation = GetSavePath(filename);
+
+
+        if (File.Exists(saveLocation))
+        {
+            FileStream file = GetFileStream(saveLocation);
+            result = (T)bf.Deserialize(file);
+
+            file.Close();
+        }
+
+        return result;
+    }
+
+    public static void SerializeObject<T>(string filename, T obj)
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+
+        if (File.Exists(filename))
+        {
+            string path = GetSavePath(filename);
+            FileStream file = GetFileStream(path);
+
+            bf.Serialize(file, obj);
+            file.Close();
+        }
+    }
+
+
+
+    public static string GetSavePath(string filename)
+    {
+        string path = Application.persistentDataPath;
+
+        //implement for platforms
+        switch (Application.platform)
+        {
+            case RuntimePlatform.OSXEditor:
+                break;
+            case RuntimePlatform.OSXPlayer:
+                break;
+            case RuntimePlatform.WindowsPlayer:
+                break;
+            case RuntimePlatform.WindowsEditor:
+                break;
+            case RuntimePlatform.IPhonePlayer:
+                break;
+            case RuntimePlatform.XBOX360:
+                break;
+            case RuntimePlatform.PS3:
+                break;
+            case RuntimePlatform.Android:
+                break;
+            case RuntimePlatform.NaCl:
+                break;
+            case RuntimePlatform.FlashPlayer:
+                break;
+            case RuntimePlatform.LinuxPlayer:
+                break;
+            case RuntimePlatform.LinuxEditor:
+                break;
+            case RuntimePlatform.WebGLPlayer:
+                break;
+            case RuntimePlatform.MetroPlayerX86:
+                break;
+            case RuntimePlatform.MetroPlayerX64:
+                break;
+            case RuntimePlatform.MetroPlayerARM:
+                break;
+            case RuntimePlatform.WP8Player:
+                break;
+            case RuntimePlatform.BB10Player:
+                break;
+            case RuntimePlatform.TizenPlayer:
+                break;
+            case RuntimePlatform.PSP2:
+                break;
+            case RuntimePlatform.PS4:
+                break;
+            case RuntimePlatform.PSM:
+                break;
+            case RuntimePlatform.XboxOne:
+                break;
+            case RuntimePlatform.SamsungTVPlayer:
+                break;
+            case RuntimePlatform.WiiU:
+                break;
+            case RuntimePlatform.tvOS:
+                break;
+            case RuntimePlatform.Switch:
+                break;
+            case RuntimePlatform.Lumin:
+                break;
+            case RuntimePlatform.Stadia:
+                break;
+            case RuntimePlatform.CloudRendering:
+                break;
+        }
+
+        return $"{path}\\{filename}";
+    }
+
 
     public static Vector3 GetVectorBetween(Vector3 from, Vector3 to){
         return to - from;
