@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc1bdbafcde37f4f86c949ad7ff69b4, type: 3}
   m_Name: Stagger
   m_EditorClassIdentifier: 
+  actionName: Stagger
   animationName: Stagger
   expressionName: surprise
   actionSprite: {fileID: 0}

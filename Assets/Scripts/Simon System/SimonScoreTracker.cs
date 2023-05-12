@@ -9,8 +9,10 @@ namespace SimonSystem{
 		[SerializeField] private float scorePerAction = 100;
 		[SerializeField] private float comboMultiplier = 0.5f;
 		public int comboCount { get; set; }
-		public float totalScore { get; set; }
-		[SerializeField] private FloatEventSO onScoreChanged;
+		public int totalScore { get; set; }
+		[SerializeField] private IntEventSO onScoreChanged;
+		[SerializeField] private IntEventSO onAddScore;
+		[SerializeField] private IntEventSO onPenaltyScore;
 
 		void Start()
 		{
@@ -24,7 +26,9 @@ namespace SimonSystem{
 
 		public void AddToScore()
         {
-			totalScore += CalculateScoreEarned();
+			int addedScore = CalculateScoreEarned();
+			totalScore += addedScore;
+			onAddScore?.CallEvent(addedScore);
 			onScoreChanged?.CallEvent(totalScore);
 			comboCount++;
         }
@@ -34,7 +38,7 @@ namespace SimonSystem{
 			comboCount = 0;
         }
 
-		private float CalculateScoreEarned()
+		private int CalculateScoreEarned()
         {
 			float scoreEarned = scorePerAction;
 
@@ -44,7 +48,7 @@ namespace SimonSystem{
 				scoreEarned *= multiplier;
 			}
 
-			return scoreEarned;
+			return (int)scoreEarned;
         }
 
 

@@ -10,10 +10,7 @@ namespace SimonSystem
 	{
 		public float maxWaitTime { get { return _maxWaitTime; } set { _maxWaitTime = value; } }
 		[SerializeField] private float _maxWaitTime = 5;
-		public float timeRemaining { get { return _timeRemaining; } set { _timeRemaining = Mathf.Max(value, 0); } }
-		[SerializeField] private float _timeRemaining;
 
-		
 		public float bonusTimePerAction { get { return _bonusTimePerAction; } set { _bonusTimePerAction = value; } }
 		[Space(20)] 
 		[SerializeField] private float _bonusTimePerAction = 0.2f;
@@ -22,27 +19,27 @@ namespace SimonSystem
 		public float penaltyTime { get { return _penaltyTime; } set { _penaltyTime = value; } }
 		[SerializeField] private float _penaltyTime = 1;
 
-		[Space(20)]
-		[SerializeField] private EventSO onTimerStart;
-		[SerializeField] private EventSO onTimerStop;
-		[SerializeField] private EventSO onGameOver;
+		[Space]
+		[SerializeField] private VarEventSO<float> onBonusTime;
+		[SerializeField] private VarEventSO<float> onPenaltyTime;
 
-		private bool isRunning = false;
+
+		private GameState state;
 
 		void Start()
 		{
-			timeRemaining = maxWaitTime;
+			state = FindObjectOfType<GameState>();
+			ResetRemainingTime();
 		}
 
 		void Update()
 		{
-			if (isRunning)
+			if (IsRunning())
 			{
-				timeRemaining -= Time.deltaTime;
-				if (timeRemaining <= 0)
+				state.TimeTick();
+				if (GetRemainingTime() <= 0)
 				{
-					onGameOver?.CallEvent();
-					isRunning = false;
+					SimonManager.GameOver();
 				}
 			}
 
@@ -52,38 +49,39 @@ namespace SimonSystem
 
 		public void AddBonusTime()
 		{
-			timeRemaining += bonusTimePerAction;
-			timeRemaining = Mathf.Min(maxWaitTime, timeRemaining);
+			state.AddTime(bonusTimePerAction);
+			onBonusTime?.CallEvent(bonusTimePerAction);
 		}
 
-		public void CalculateNewMaxTime()
+		public void AddRoundBonusTime()
 		{
-			maxWaitTime = timeRemaining + bonusTimePerRound;
+			state.AddTime(bonusTimePerRound);
+			onBonusTime?.CallEvent(bonusTimePerRound);
 		}
 
-		public void RemovePenaltyTime()
+		public void ApplyPenaltyTime()
 		{
-			timeRemaining -= penaltyTime;
+			state.RemoveTime(penaltyTime);
+			onPenaltyTime?.CallEvent(penaltyTime);
 		}
-
-		public void StopTimer()
-		{
-			onTimerStop?.CallEvent();
-			isRunning = false;
-			//CalculateNewMaxTime();
-			//ResetRemainingTime();
-		}
-
-		public void StartTimer()
-		{
-			onTimerStart?.CallEvent();
-			isRunning = true;
-		}
-
 
 		private void ResetRemainingTime()
         {
-			timeRemaining = maxWaitTime;
+			state.SetTime(maxWaitTime);
         }
+
+
+		public float GetRemainingTime() { return state.GetTimeRemaining(); }
+		public float GetMaxTime() { return maxWaitTime; }
+
+		/***************
+		 * Helpers
+		 * **************/
+
+		private bool IsRunning()
+        {
+			return state.GetGameState() == SimonState.PlayerTurn;
+        }
+
 	}
 }

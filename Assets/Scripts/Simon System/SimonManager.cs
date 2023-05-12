@@ -5,8 +5,11 @@ using UnityEngine;
 
 public enum SimonState
 {
+    StartingGame,
+    CountingDownComputer,
     PlayingSequence,
-    AwaitingPlayer,
+    CountingDownPlayer,
+    PlayerTurn,
     AwaitingFinalAnimation,
     VictoryAnimation,
     GameOver
@@ -16,34 +19,51 @@ namespace SimonSystem
 {
     public class SimonManager : MonoBehaviour
     {
+        private static SimonManager instance;
+
+
         private Character player;
-        private SimonActionSelector selector;
-        private SimonSequencePlayer sequence;
-        private SimonState state = SimonState.PlayingSequence;
+        [SerializeField] private SimonActionManager actionManager;
+        [SerializeField] private SimonSequencePlayer sequence;
+        [SerializeField] private GameState gameState;
 
-        private int actionIndex = 0;
-
+        [Space]
+        [SerializeField] private EventSO onGameStart;
+        [SerializeField] private EventSO onSequenceStart;
         [SerializeField] private EventSO onPlayerTurnStart;
         [SerializeField] private EventSO onPlayerTurnEnd;
-        [SerializeField] private EventSO onCorrectAction;
-        [SerializeField] private EventSO onWrongAction;
+        [SerializeField] private EventSO onGameOver;
+
+        [Space(10)]
+        [SerializeField] private VarEventSO<SimonAction> onCorrectAction;
+        [SerializeField] private VarEventSO<SimonAction> onWrongAction;
 
         [SerializeField] private VarEventSO<SimonAction> onSimonAction;
 
         private bool isActive = false;
 
+        private void Awake()
+        {
+            if(instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
+        }
+
         // Start is called before the first frame update
         void Start()
         {
             player = FindObjectOfType<Character>();
-            selector = GetComponentInChildren<SimonActionSelector>();
-            sequence = GetComponentInChildren<SimonSequencePlayer>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if(state == SimonState.AwaitingFinalAnimation)
+            if(gameState.GetGameState() == SimonState.AwaitingFinalAnimation)
             {
                 if (player.IsIdle()) ChangeState(SimonState.PlayingSequence);
             }
@@ -53,48 +73,48 @@ namespace SimonSystem
 
         public void StartGame()
         {
-            if (!isActive)
-            {
-                isActive = true;
-                selector.ResetActions();
-                ChangeState(SimonState.PlayingSequence);
-            }
+            ChangeState(SimonState.StartingGame);
         }
 
-        public void SelectAction(SimonAction action)
+        public void WaitForPlayer()
         {
-            if (isActive && state == SimonState.AwaitingPlayer)
+            ChangeState(SimonState.PlayerTurn);
+        }
+
+        public void StartSequence() { ChangeState(SimonState.PlayingSequence); }
+
+        public static void GameOver()
+        {
+            instance.ChangeState(SimonState.GameOver);
+        }
+
+
+        public void ProcessAction(SimonAction action)
+        {
+            if (gameState.GetGameState() == SimonState.PlayerTurn)
             {
-                bool correct = CompareAction(action);
+                bool correct = gameState.CompareAction(action);
 
                 if (correct)
                 {
-                    //action.RunAction(player);
-                    actionIndex++;
-                    onCorrectAction?.CallEvent();
-                    onSimonAction?.CallEvent(action);
+                    gameState.IncrementActionIndex();
+                    onCorrectAction.CallEvent(action);
 
-                    if (actionIndex == selector.GetNumberOfActions())
+                    if (gameState.ActionsDone())
                     {
                         ChangeState(SimonState.AwaitingFinalAnimation);
                     }
                 }
                 else
                 {
-                    onWrongAction?.CallEvent();
+                    onWrongAction.CallEvent(action);
                 }
             }
         }
 
-
-        public void WaitForPlayer()
+        public static void AddAction(SimonAction action)
         {
-            if (isActive) ChangeState(SimonState.AwaitingPlayer);
-        }
-
-        public void GameOver()
-        {
-            ChangeState(SimonState.GameOver);
+            GetState().AddAction(action);
         }
 
 
@@ -107,41 +127,62 @@ namespace SimonSystem
 
         private void ChangeState(SimonState newState)
         {
-            if (state == SimonState.AwaitingPlayer) onPlayerTurnEnd?.CallEvent();
-
+            Debug.Log(newState);
             switch (newState)
             {
-                case SimonState.PlayingSequence:
-                    selector.AddAction();
-                    sequence.Play();
+                case SimonState.StartingGame:
+                    onGameStart.CallEvent();
+                    //hide menus
                     break;
-                case SimonState.AwaitingPlayer:
-                    actionIndex = 0;
-                    onPlayerTurnStart?.CallEvent();
+                case SimonState.PlayingSequence:
+                    AddRandomAction();
+                    sequence.Play();
+                    onSequenceStart.CallEvent();
+                    break;
+                case SimonState.PlayerTurn:
+                    onPlayerTurnStart.CallEvent();
                     break;
                 case SimonState.AwaitingFinalAnimation:
-
+                    gameState.ResetActionIndex();
+                    onPlayerTurnEnd.CallEvent();
                     break;
                 case SimonState.VictoryAnimation:
-                    
+
                     break;
                 case SimonState.GameOver:
-                    isActive = false;
+                    gameState.ResetActions();
+                    onGameOver.CallEvent();
                     break;
             }
-            state = newState;
+            gameState.SetGameState(newState);
         }
 
 
 
+
+        //Getters
+        public static GameState GetState()
+        {
+            return instance.gameState;
+        }
+
+        public static SimonState GetCurrentState() { return GetState().GetGameState(); }
+
+        public static List<SimonAction> GetAllActions() { return GetState().GetActions(); }
 
 
         //Helper Functions
 
-        private bool CompareAction(SimonAction action)
+        private void AddRandomAction()
+        {
+            var action = actionManager.GetRandomAction();
+            AddAction(action);
+        }
+
+        /*private bool CompareAction(SimonAction action)
         {
             return selector.GetActionAtIndex(actionIndex) == action;
-        }
+        }*/
 
 
 

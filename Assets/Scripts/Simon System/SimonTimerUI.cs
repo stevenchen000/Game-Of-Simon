@@ -32,7 +32,7 @@ namespace SimonSystem
         // Update is called once per frame
         void Update()
         {
-            if (uiEnabled)
+            if (timer.GetMaxTime() > 0)
             {
                 UpdateSlider();
                 UpdateText();
@@ -41,27 +41,18 @@ namespace SimonSystem
 
         private void UpdateSlider()
         {
-            float maxTime = timer.maxWaitTime;
-            float currTime = timer.timeRemaining;
+            float maxTime = timer.GetMaxTime();
+            float currTime = timer.GetRemainingTime();
 
             float tempPercentage = currTime / maxTime;
+            tempPercentage = Mathf.Max(0, tempPercentage);
 
-            if(percentage > tempPercentage)
-            {
-                percentage = tempPercentage;
-            }
-            else
-            {
-                percentage += Time.deltaTime / maxTime;
-                percentage = Mathf.Min(percentage, tempPercentage);
-            }
-
-            slider.value = percentage;
+            slider.value = tempPercentage;
         }
 
         private void UpdateText()
         {
-            float currTime = timer.timeRemaining;
+            float currTime = timer.GetRemainingTime();
 
             textbox.text = $"{currTime.ToString("0.00")}s";
         }

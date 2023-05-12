@@ -14,7 +14,6 @@ namespace SimonSystem
 
 	public class SimonSequencePlayer : MonoBehaviour
 	{
-		private SimonActionSelector selector;
 		private Character player;
 		private AudioSource audio;
 
@@ -48,7 +47,6 @@ namespace SimonSystem
 		[SerializeField] private VarEventSO<SimonAction> onActionRun;
 		void Start()
 		{
-			selector = FindObjectOfType<SimonActionSelector>();
 			player = FindObjectOfType<Character>();
 			audio = transform.GetComponent<AudioSource>();
 		}
@@ -123,15 +121,16 @@ namespace SimonSystem
 		private List<SimonAction> GetListOfActions()
         {
 			List<SimonAction> result = new List<SimonAction>();
+			List<SimonAction> fullList = SimonManager.GetAllActions();
 
             switch (sequence)
             {
                 case SequenceType.AllActions:
-					result.AddRange(selector.GetAllActions());
+					result.AddRange(fullList);
 					break;
                 case SequenceType.LastAction:
-					int numOfActions = selector.GetNumberOfActions();
-					result.Add(selector.GetActionAtIndex(numOfActions - 1));
+					int numOfActions = fullList.Count;
+					result.Add(fullList[numOfActions - 1]);
                     break;
             }
 

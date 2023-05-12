@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: OnGameOver
   m_EditorClassIdentifier: 
   description: Called when the game ends
-  showDebugText: 0
+  showDebugText: 1

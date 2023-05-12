@@ -6,6 +6,7 @@ namespace SimonSystem{
 	public class SimonActionManager : MonoBehaviour
 	{
 		[SerializeField] private List<SimonAction> actions = new List<SimonAction>();
+		[SerializeField] private int currActionIndex = 0;
 
 		public int GetNumberOfActions() { return actions.Count; }
 		public SimonAction GetActionAtIndex(int index) 

@@ -7,6 +7,7 @@ namespace SimonSystem
     [CreateAssetMenu(menuName = "Simon Action/Action")]
     public class SimonAction : ScriptableObject
     {
+        [SerializeField] private string actionName;
         [SerializeField] private string animationName;
         [SerializeField] private string expressionName;
 
@@ -29,7 +30,8 @@ namespace SimonSystem
             if (overridePosition) character.SetPosition(animationPosition);
         }
 
-
+        public string GetActionName() { return actionName; }
+        public string GetExpressionName() { return expressionName; }
         public Sprite GetSprite() { return actionSprite; }
     }
 }

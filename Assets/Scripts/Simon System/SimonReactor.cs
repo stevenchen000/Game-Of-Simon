@@ -20,11 +20,15 @@ namespace SimonSystem
         private Dictionary<SimonAction, SimonReaction> _reactions = new Dictionary<SimonAction, SimonReaction> ();
         
         private Animator anim;
+        private Vector3 defaultPosition;
+        private Vector3 defaultScale;
 
         // Start is called before the first frame update
         void Start()
         {
             anim = transform.GetComponent<Animator>();
+            defaultPosition = transform.position;
+            defaultScale = transform.localScale;
             SetupDictionary();
         }
 
@@ -47,6 +51,16 @@ namespace SimonSystem
         public void PlayAnimation(string animation)
         {
             anim.CrossFade(animation, crossfadeTime, 0, 0);
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            transform.position = position;
+        }
+
+        public void SetScale(Vector3 scale)
+        {
+            transform.localScale = scale;
         }
 
 

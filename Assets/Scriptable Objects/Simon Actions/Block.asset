@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc1bdbafcde37f4f86c949ad7ff69b4, type: 3}
   m_Name: Block
   m_EditorClassIdentifier: 
+  actionName: Block
   animationName: Block
   expressionName: angry
   actionSprite: {fileID: 21300000, guid: acecc9dbf67d24845981d963868951f1, type: 3}

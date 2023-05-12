@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 229555548587665161}
   m_RootOrder: 2
@@ -59,20 +60,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27bcdc9d9cf77a47b05972e234a5384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'OnCorrectAction - 1 action(s)
-
-    1) AddToScore (Simon Score Tracker)
-
-
-    OnWrongAction
-    - 1 action(s)
-
-    1) ResetCombo (Simon Score Tracker)'
+  description: " - 1 action(s)\n1) AddToScore (Simon Score Tracker)\n\n - 1 action(s)\n1)
+    ResetCombo (Simon Score Tracker)"
   eventObjects:
-  - description: 'OnCorrectAction - 1 action(s)
+  - description: ' - 1 action(s)
 
-      1) AddToScore (Simon Score
-      Tracker)'
+      1) AddToScore (Simon Score Tracker)'
     eventSO: {fileID: 11400000, guid: e7146a3db12b1ad4aac435f00026e66f, type: 2}
     unityEvent:
       m_PersistentCalls:
@@ -89,7 +82,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - description: 'OnWrongAction - 1 action(s)
+  - description: ' - 1 action(s)
 
       1) ResetCombo (Simon Score Tracker)'
     eventSO: {fileID: 11400000, guid: 7f2a3ea35e22c0542a55f41de0111703, type: 2}
@@ -137,6 +130,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -228.5873, y: 587.01575, z: -106.12038}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 229555548838631000}
   - {fileID: 229555548634949583}
@@ -158,8 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPlayerTurnStart: {fileID: 11400000, guid: 680251d0184cafd43902c9f63f896f27, type: 2}
   onPlayerTurnEnd: {fileID: 11400000, guid: e447f14d90400e742b10f69d3a856541, type: 2}
-  onCorrectAction: {fileID: 11400000, guid: e7146a3db12b1ad4aac435f00026e66f, type: 2}
-  onWrongAction: {fileID: 11400000, guid: 7f2a3ea35e22c0542a55f41de0111703, type: 2}
+  onCorrectAction: {fileID: 11400000, guid: 862bcf41636946d4b9fbc569b75838e0, type: 2}
+  onWrongAction: {fileID: 11400000, guid: dde303c79de56ab42ad7b6cedea10693, type: 2}
   onSimonAction: {fileID: 11400000, guid: 72dfd1200615d4d4fa23ab3006b0be88, type: 2}
 --- !u!114 &229555548587665166
 MonoBehaviour:
@@ -277,6 +271,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 564.64075, y: 629.36755, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 229555548587665161}
   m_RootOrder: 1
@@ -299,8 +294,12 @@ MonoBehaviour:
   timeBetweenActions: 0.6
   groupSize: 3
   groupWaitTime: 1
+  actionsToSpeedup: 10
+  clapSound: {fileID: 0}
+  clapSoundMultiplier: 1
+  countdownSounds: []
   onSequenceFinish: {fileID: 11400000, guid: 4005aaf99aafefb42bcdfd3c0bfd482c, type: 2}
-  onActionRun: {fileID: 11400000, guid: 72dfd1200615d4d4fa23ab3006b0be88, type: 2}
+  onActionRun: {fileID: 11400000, guid: db9f413584a045d43989e83481d3f9df, type: 2}
 --- !u!1 &229555548838631002
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +328,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 564.64075, y: 629.36755, z: 92.21157}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 229555548587665161}
   m_RootOrder: 0

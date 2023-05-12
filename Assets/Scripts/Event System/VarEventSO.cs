@@ -11,6 +11,7 @@ namespace SOEventSystem
         public string description;
         public delegate void VarEvent(T var);
         private event VarEvent _event;
+        [SerializeField] private bool debug;
 
 
         public void SubscribeToEvent(VarEvent func)
@@ -26,6 +27,7 @@ namespace SOEventSystem
         public void CallEvent(T var)
         {
             _event?.Invoke(var);
+            if (debug)  Debug.Log($"Called event {name}");
         }
     }
 }
