@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 20774391}
   - component: {fileID: 20774393}
   - component: {fileID: 20774392}
+  - component: {fileID: 20774394}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -199,6 +200,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20774390}
   m_CullTransparentMesh: 1
+--- !u!225 &20774394
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20774390}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &138520528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: -400}
   m_SizeDelta: {x: -56.2896, y: -338.5954}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &543536813
@@ -2401,7 +2414,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1552948120}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1952904003}
+        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+        m_MethodName: StartUIDisappear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1552948120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2833,6 +2858,7 @@ GameObject:
   - component: {fileID: 1952904000}
   - component: {fileID: 1952903999}
   - component: {fileID: 1952904003}
+  - component: {fileID: 1952904004}
   m_Layer: 5
   m_Name: Game Over Screen
   m_TagString: Untagged
@@ -2938,7 +2964,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 543536812}
-  hiddenOffset: {x: 0, y: -500}
+  background: {fileID: 20774394}
+  gameOverStartTime: 2
+  transitionTime: 1
+  activeY: 245
+  inactiveY: -200
+  onGameRestart: {fileID: 11400000, guid: 83729416b3f2eb04bb21dffeb5de4c5f, type: 2}
+--- !u!114 &1952904004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952903998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27bcdc9d9cf77a47b05972e234a5384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 'OnGameOver - 1 action(s)
+
+    1) StartUIAppear (Game Over Screen)'
+  eventObjects:
+  - description: 'OnGameOver - 1 action(s)
+
+      1) StartUIAppear (Game Over Screen)'
+    eventSO: {fileID: 11400000, guid: f6aaacca059646147acdd284cfad2642, type: 2}
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1952904003}
+          m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+          m_MethodName: StartUIAppear
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2019930067
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,12 +3410,22 @@ PrefabInstance:
       propertyPath: description
       value: 'OnSequenceFinish - 1 action(s)
 
-        1) WaitForPlayer (Simon Manager)'
+        1) WaitForPlayer (Simon Manager)
+
+
+        OnGameRestart
+        - 1 action(s)
+
+        1) StartGame (Simon Manager)'
       objectReference: {fileID: 0}
     - target: {fileID: 229555548587665166, guid: 7e17fd19996e8d84b9fc829a364eb8a3, type: 3}
       propertyPath: eventObjects.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 229555548587665166, guid: 7e17fd19996e8d84b9fc829a364eb8a3, type: 3}
+      propertyPath: eventObjects.Array.data[1].eventSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 83729416b3f2eb04bb21dffeb5de4c5f, type: 2}
     - target: {fileID: 229555548587665166, guid: 7e17fd19996e8d84b9fc829a364eb8a3, type: 3}
       propertyPath: eventObjects.Array.data[2].eventSO
       value: 
@@ -3362,9 +3438,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 229555548587665166, guid: 7e17fd19996e8d84b9fc829a364eb8a3, type: 3}
       propertyPath: eventObjects.Array.data[1].description
-      value: 'OnGameOver - 1 action(s)
+      value: 'OnGameRestart - 1 action(s)
 
-        1) GameOver (Simon Manager)'
+        1) StartGame (Simon Manager)'
       objectReference: {fileID: 0}
     - target: {fileID: 229555548587665166, guid: 7e17fd19996e8d84b9fc829a364eb8a3, type: 3}
       propertyPath: eventObjects.Array.data[2].description
@@ -3387,6 +3463,10 @@ PrefabInstance:
     - target: {fileID: 229555548587665166, guid: 7e17fd19996e8d84b9fc829a364eb8a3, type: 3}
       propertyPath: eventObjects.Array.data[2].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 229555548587665166, guid: 7e17fd19996e8d84b9fc829a364eb8a3, type: 3}
+      propertyPath: eventObjects.Array.data[1].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartGame
       objectReference: {fileID: 0}
     - target: {fileID: 229555548587665166, guid: 7e17fd19996e8d84b9fc829a364eb8a3, type: 3}
       propertyPath: eventObjects.Array.data[2].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
