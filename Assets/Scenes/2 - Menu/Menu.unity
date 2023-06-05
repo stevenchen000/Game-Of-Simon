@@ -2200,8 +2200,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a7e6b66d588e1fc4e9eb348649b36cae, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2346,6 +2346,7 @@ GameObject:
   - component: {fileID: 1988657264}
   - component: {fileID: 1988657263}
   - component: {fileID: 1988657262}
+  - component: {fileID: 1988657265}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2418,16 +2419,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 364151372}
-        m_TargetAssemblyTypeName: LevelSelectionUI, Assembly-CSharp
-        m_MethodName: LoadCurrentLevel
-        m_Mode: 1
+      - m_Target: {fileID: 1988657265}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Bathroom
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1988657263
@@ -2468,6 +2469,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988657260}
   m_CullTransparentMesh: 0
+--- !u!114 &1988657265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988657260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a16632d4fa20d4c9726067c14e1ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2018378139
 GameObject:
   m_ObjectHideFlags: 0
