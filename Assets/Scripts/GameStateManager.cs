@@ -16,7 +16,8 @@ public class GameData
 
 public class GameStateManager : MonoBehaviour
 {
-	private static GameStateManager gameState;
+	private static GameStateManager instance;
+	[SerializeField] private LoadScreen loadScreen;
 
 	[SerializeField] private string simonName = "Simon";
 	[SerializeField] private List<string> previousNames = new List<string>();
@@ -27,9 +28,9 @@ public class GameStateManager : MonoBehaviour
 
 	void Start()
 	{
-		if(gameState == null)
+		if(instance == null)
         {
-			gameState = this;
+			instance = this;
 			DontDestroyOnLoad(this);
         }
         else
@@ -44,18 +45,18 @@ public class GameStateManager : MonoBehaviour
 	}
 
 
-	public static string GetSimonName() { return gameState.simonName; }
+	public static string GetSimonName() { return instance.simonName; }
 	public static void SetSimonName(string newName) 
 	{
-		gameState.previousNames.Add(GetSimonName());
-		gameState.simonName = newName;
+		instance.previousNames.Add(GetSimonName());
+		instance.simonName = newName;
 	}
-	public static int GetNumberOfOldNames() { return gameState.previousNames.Count; }
-	public static string GetOldName(int index) { return gameState.previousNames[index]; }
+	public static int GetNumberOfOldNames() { return instance.previousNames.Count; }
+	public static string GetOldName(int index) { return instance.previousNames[index]; }
 
 
-	public static int GetCoins() { return gameState.coins; }
-	public static bool HasEnoughCoins(int amount) { return gameState.coins >= amount; }
+	public static int GetCoins() { return instance.coins; }
+	public static bool HasEnoughCoins(int amount) { return instance.coins >= amount; }
 	/// <summary>
 	/// Attempts to spend coins
 	/// Returns false if not enough coins
@@ -68,12 +69,17 @@ public class GameStateManager : MonoBehaviour
 
         if (HasEnoughCoins(amount))
         {
-			gameState.coins -= amount;
+			instance.coins -= amount;
 			coinsSpent = true;
         }
 
 		return coinsSpent;
 	}
+
+	public static void AddCoins(int amount)
+    {
+		instance.coins += amount;
+    }
 
 
 
@@ -105,4 +111,14 @@ public class GameStateManager : MonoBehaviour
 
 		return data;
     }
+
+	/**************
+	 * Load Screen
+	 * *************/
+
+	public static void LoadOut(string levelName)
+    {
+		instance.loadScreen.LoadOut(levelName);
+    }
+
 }

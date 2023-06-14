@@ -7,6 +7,6 @@ public class SceneLoader : MonoBehaviour
 {
 	public void LoadLevel(string levelName)
     {
-        UnityUtilities.LoadLevel(levelName);
+        GameStateManager.LoadOut(levelName);
     }
 }

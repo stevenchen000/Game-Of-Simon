@@ -27,7 +27,7 @@ public class LoadScreen : MonoBehaviour
 		cgroup = transform.GetComponent<CanvasGroup>();
 		SetLoadScreenColor(loadScreenColor);
 
-		DontDestroyOnLoad(this);
+		//DontDestroyOnLoad(this);
 		SceneManager.sceneLoaded += (x, y) => LoadIn();
 		cgroup.alpha = 1;
 		
