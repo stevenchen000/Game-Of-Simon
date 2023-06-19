@@ -8,7 +8,10 @@ public class SaveData
     private Dictionary<string, string> stringDict = new Dictionary<string, string>();
     private Dictionary<string, int> intDict = new Dictionary<string, int>();
 
+    public SaveData()
+    {
 
+    }
 
 
     /****************
@@ -76,6 +79,31 @@ public class SaveData
     {
         stringDict = strings;
         intDict = integers;
+    }
+
+
+    /***************
+     * Debug
+     * Functions
+     * *************/
+
+    public string GetAllDataAsText()
+    {
+        string text = "";
+
+        var stringList = stringDict.Keys;
+        foreach(string stringData in stringList)
+        {
+            text += $"{stringData}: {stringDict[stringData]}\n";
+        }
+
+        var intList = intDict.Keys;
+        foreach(string intKey in intList)
+        {
+            text += $"{intKey}: {intDict[intKey]}\n";
+        }
+
+        return text;
     }
 
 }

@@ -2349,6 +2349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1810051735}
   - component: {fileID: 1810051734}
+  - component: {fileID: 1810051736}
   m_Layer: 0
   m_Name: Game State Manager
   m_TagString: Untagged
@@ -2369,9 +2370,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadScreen: {fileID: 683095756}
-  simonName: Simon
-  previousNames: []
-  coins: 0
 --- !u!4 &1810051735
 Transform:
   m_ObjectHideFlags: 0
@@ -2388,6 +2386,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1810051736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810051733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27bcdc9d9cf77a47b05972e234a5384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 'OnLoadOutStart - 1 action(s)
+
+    1) SaveData (Game State Manager)'
+  eventObjects:
+  - description: 'OnLoadOutStart - 1 action(s)
+
+      1) SaveData (Game State Manager)'
+    eventSO: {fileID: 11400000, guid: 26e012c6a7f1a02468aef1bb37405f9e, type: 2}
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1810051734}
+          m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
+          m_MethodName: SaveData
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1988657260
 GameObject:
   m_ObjectHideFlags: 0

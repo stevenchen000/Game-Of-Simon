@@ -7,24 +7,22 @@ using TMPro;
 using UnityEngine;
 
 
-public class GameData
-{
-	public string playerName;
-	public int coins;
-
-}
-
 public class GameStateManager : MonoBehaviour
 {
 	private static GameStateManager instance;
 	[SerializeField] private LoadScreen loadScreen;
 
-	[SerializeField] private string simonName = "Simon";
-	[SerializeField] private List<string> previousNames = new List<string>();
-	[SerializeField] private int coins;
+	private GameVarInt totalCoins;
 
-	private const string filename = "player.sim";
 
+	private const string filename = "data.sav";
+	private SaveData saveData;
+
+
+	/******************
+	 * Unity
+	 * Functions
+	 * *****************/
 
 	void Start()
 	{
@@ -32,6 +30,8 @@ public class GameStateManager : MonoBehaviour
         {
 			instance = this;
 			DontDestroyOnLoad(this);
+			LoadData();
+			totalCoins = new GameVarInt(saveData, VarNames.coins);
         }
         else
         {
@@ -44,19 +44,35 @@ public class GameStateManager : MonoBehaviour
 		
 	}
 
+    public void OnApplicationQuit()
+    {
+		SaveData();
+    }
 
-	public static string GetSimonName() { return instance.simonName; }
+    private void OnApplicationPause(bool pause)
+    {
+        if(Application.platform == RuntimePlatform.Android ||
+			Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+			SaveData();
+        }
+    }
+
+
+    /****************
+	 * Variable
+	 * Functions
+	 * **************/
+
+    public static string GetSimonName() { return GetString(VarNames.simonName); }
 	public static void SetSimonName(string newName) 
 	{
-		instance.previousNames.Add(GetSimonName());
-		instance.simonName = newName;
+		SetString(VarNames.simonName, newName);
 	}
-	public static int GetNumberOfOldNames() { return instance.previousNames.Count; }
-	public static string GetOldName(int index) { return instance.previousNames[index]; }
 
 
-	public static int GetCoins() { return instance.coins; }
-	public static bool HasEnoughCoins(int amount) { return instance.coins >= amount; }
+	public static int GetCoins() { return GetInt(VarNames.coins); }
+	public static bool HasEnoughCoins(int amount) { return GetInt(VarNames.coins) >= amount; }
 	/// <summary>
 	/// Attempts to spend coins
 	/// Returns false if not enough coins
@@ -69,7 +85,7 @@ public class GameStateManager : MonoBehaviour
 
         if (HasEnoughCoins(amount))
         {
-			instance.coins -= amount;
+			IncrementInt(VarNames.coins, -amount);
 			coinsSpent = true;
         }
 
@@ -78,7 +94,39 @@ public class GameStateManager : MonoBehaviour
 
 	public static void AddCoins(int amount)
     {
-		instance.coins += amount;
+		IncrementInt(VarNames.coins, amount);
+    }
+
+
+
+	public static void SetString(string name, string value)
+    {
+		instance.saveData.SetString(name, value);
+    }
+	public static bool HasString(string name)
+    {
+		return instance.saveData.HasString(name);
+    }
+	public static string GetString(string name)
+    {
+		return instance.saveData.GetString(name);
+    }
+
+	public static void ChangeInt(string name, int value)
+    {
+		instance.saveData.SetInt(name, value);
+    }
+	public static bool HasInt(string name)
+    {
+		return instance.saveData.HasInt(name);
+    }
+	public static int GetInt(string name)
+    {
+		return instance.saveData.GetInt(name);
+    }
+	public static void IncrementInt(string name, int amount)
+    {
+		instance.saveData.IncrementInt(name, amount);
     }
 
 
@@ -89,28 +137,23 @@ public class GameStateManager : MonoBehaviour
 
 	public void LoadData()
     {
-		GameData data = UnityUtilities.GetDeserializedObject<GameData>(filename);
-		UnloadGameData(data);
+		saveData = UnityUtilities.GetDeserializedObject<SaveData>(filename);
+		if(saveData == null)
+        {
+			saveData = new SaveData();
+			Debug.Log("No save data found, reset data");
+        }
+		Debug.Log(saveData.GetAllDataAsText());
     }
 
 	public void SaveData()
     {
-		GameData data = SaveToGameData();
-		UnityUtilities.SerializeObject(filename, data);
+		UnityUtilities.SerializeObject(filename, saveData);
+		Debug.Log("Game saved");
+		Debug.Log(saveData.GetAllDataAsText());
     }
 
 
-	private void UnloadGameData(GameData data)
-    {
-
-    }
-
-	private GameData SaveToGameData()
-    {
-		GameData data = new GameData();
-
-		return data;
-    }
 
 	/**************
 	 * Load Screen
